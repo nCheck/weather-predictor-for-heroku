@@ -117,4 +117,4 @@ def home():
 
 
 
-app.run()
+app.run(debug=True, use_reloader=True)
