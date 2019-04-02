@@ -116,5 +116,5 @@ def home():
 
 
 
-
-app.run(debug=True, use_reloader=True, port=5555)
+port = int(os.environ.get("PORT", 5005))
+app.run(debug=True, use_reloader=True, port=port)
