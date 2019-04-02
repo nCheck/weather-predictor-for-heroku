@@ -72,14 +72,17 @@ def predict():
     # print( json.dumps( request.json['data'] ) )
 
     try :
-        data = request.form
-        lat = data.get('lat' , 18)
-        lon = data.get('lon', 72)
-
+        print("hi")
+        data = request.json['coords']
+        print(data)
+        lat = data['latitude']
+        lon = data['longitude']
+        print(lat , lon)
+        # print(data)
         URL = f"http://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&units=metric&appid=0eab9f6fc9a3f1ab2bb6212e5f4fceb0"
         r = requests.get(url = URL) 
         data = r.json()
-
+        # print(data)
 
         summary = data['weather'][0]['main']
         humidity = data['main']['humidity']
