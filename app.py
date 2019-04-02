@@ -116,5 +116,5 @@ def home():
 
 
 
-port = int(os.environ.get("PORT", 5005))
-app.run(debug=True, use_reloader=True, port=port)
+if __name__ == '__main__':
+    app.run()
