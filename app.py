@@ -84,7 +84,7 @@ def predict():
         data = r.json()
         # print(data)
 
-        summary = data['weather'][0]['main']
+        summary = data['weather'][0]['main'].upper()
         humidity = data['main']['humidity']
         pressure = data['main']['pressure']
         temperature = data['main']['temp']
@@ -94,10 +94,16 @@ def predict():
 
         inputData = [ temperature, humidity, wind_speed, wind_deg, visibility, pressure, classes_dict.get(summary, 4) ]
 
+        print(summary + " SUMMARY")
+        if summary == "CLOUDS":
+            summary = "CLOUDY"
+        if summary not in classes_dict.keys():
+            summary = "CLEAR"
+
         prediction = model.predict( [ inputData ] )[0]
         print( prediction ) 
 
-        return jsonify( { "result" : prediction , "status"  : True } )
+        return jsonify( { "result" : summary , "status"  : True } )
 
     except:
         return jsonify( { "result" : "error" , "status"  : False } )      
